@@ -45,6 +45,12 @@ export class TemplateService {
                 name: "Pet Store Example",
                 description: "Creates a standard/famous Swagger 2.0 Pet Store API sample.  Can be found here: https://petstore.swagger.io/v2/swagger.json",
                 content: PET_STORE_20
+			},
+			{
+                specVersion: "3.0.2",
+                name: "Totvs API Template 2",
+                description: "Creates a template with Totvs best practices ",
+                content: BRANCH_30
             },
             {
                 specVersion: "3.0.2",
@@ -77,6 +83,757 @@ export class TemplateService {
 
 
 }
+
+const BRANCH_30 =
+{
+	"openapi": "3.0.1",
+	"servers": [
+	  {
+		"description": "API para a entidade filial (Branch) para produtos TOTVS",
+		"url": "API.totvs.com.br"
+	  }
+	],
+	"info": {
+	  "description": "API para a entidade filial (Branch) para produtos TOTVS",
+	  "version": "2.001",
+	  "title": "Branch",
+	  "contact": {
+		"name": "T-Talk",
+		"url": "API.Totvs.com.br",
+		"email": "comiteintegracao@totvs.com.br"
+	  },
+	  "x-totvs": {
+		"messageDocumentation": {
+		  "name": "Branch",
+		  "description": "Filial",
+		  "segment": "FrameWork"
+		},
+		"productInformation": [
+		  {
+			"product" : "protheus",
+			"contact": "Protheus_FW@totvs.com.br",
+			"description": "Cadastro de Filial",
+			"adapter": "apcfg230i.prw",
+			"helpUrl": "link aqui"
+		  }
+		]
+	  }
+	},
+	"paths": {
+	  "/Branch": {
+		"get": {
+		  "tags": [
+			"Branch"
+		  ],
+		  "summary": "Retorna todas as Filiais da base",
+		  "x-totvs": {
+			"productInformation": [
+			  {
+				"product" : "protheus",
+				"available": true,
+				"note": "Este verbo esta disponivel com todos os parametros",
+				"minimalVersion": "12..1.21"
+			  }
+			]
+		  },
+		  "description": "Retorna todas as Filiais da base",
+		  "operationId": "getBranch",
+		  "parameters": [
+			{
+			  "$ref": "#/components/parameters/Authorization"
+			},
+			{
+			  "$ref": "#/components/parameters/Order"
+			},
+			{
+			  "$ref": "#/components/parameters/Page"
+			},
+			{
+			  "$ref": "#/components/parameters/PageSize"
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "Operação realizada com sucesso",
+			  "content": {
+				"application/json": {
+				  "schema": {
+					"$ref": "#/components/schemas/PagedBranches"
+				  }
+				}
+			  }
+			}
+		  }
+		},
+		"post": {
+		  "tags": [
+			"Branch"
+		  ],
+		  "summary": "Inclui a Filial passada na requisição",
+		  "description": "Inclui a Filial passada na requisição",
+		  "operationId": "postBranch",
+		  "x-totvs": {
+			"productInformation": [
+			  {
+				"product" : "protheus",
+				"available": true,
+				"note": "Este verbo esta disponivel com todos os parametros",
+				"minimalVersion": "12.1.21"
+			  }
+			]
+		  },
+		  "parameters": [
+			{
+			  "$ref": "#/components/parameters/Authorization"
+			}
+		  ],
+		  "requestBody": {
+			"content": {
+			  "application/json": {
+				"schema": {
+				  "$ref": "#/components/schemas/BranchInfo"
+				}
+			  }
+			},
+			"description": "Filial para ser incluida"
+		  },
+		  "responses": {
+			"200": {
+			  "description": "Operação realizada com sucesso",
+			  "content": {
+				"application/json": {
+				  "schema": {
+					"$ref": "#/components/schemas/PagedBranches"
+				  }
+				}
+			  }
+			},
+			"400": {
+			  "description": "erro no momento da Inclusão",
+			  "content": {
+				"application/json": {
+				  "schema": {
+					"$ref": "#/components/schemas/ErrorModel"
+				  }
+				}
+			  }
+			}
+		  }
+		}
+	  },
+	  "/Branch/{BranchId}": {
+		"get": {
+		  "tags": [
+			"Branch"
+		  ],
+		  "summary": "Retorna todas as Filiais da base",
+		  "description": "Retorna todas as Filiais da base",
+		  "operationId": "getBranchID",
+		  "x-totvs": {
+			"productInformation": [
+			  {
+				"product" : "protheus",
+				"available": true,
+				"note": "Este verbo esta disponivel com todos os parametros",
+				"minimalVersion": "12.1.21"
+			  }
+			]
+		  },
+		  "parameters": [
+			{
+			  "$ref": "#/components/parameters/BranchId"
+			},
+			{
+			  "$ref": "#/components/parameters/Authorization"
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "Operação realizada com sucesso",
+			  "content": {
+				"application/json": {
+				  "schema": {
+					"$ref": "#/components/schemas/PagedBranches"
+				  }
+				}
+			  }
+			},
+			"404": {
+			  "description": "Filial não localizada na base",
+			  "content": {
+				"application/json": {
+				  "schema": {
+					"$ref": "#/components/schemas/ErrorModel"
+				  }
+				}
+			  }
+			}
+		  }
+		},
+		"put": {
+		  "tags": [
+			"Branch"
+		  ],
+		  "summary": "Inclui a Filial passada na requisição",
+		  "description": "Inclui a Filial passada na requisição",
+		  "operationId": "postBranchID",
+		  "x-totvs": {
+			"productInformation": [
+			  {
+				"product" : "protheus",
+				"available": true,
+				"note": "Este verbo esta disponivel com todos os parametros",
+				"minimalVersion": "12.1.21"
+			  }
+			]
+		  },
+		  "parameters": [
+			{
+			  "$ref": "#/components/parameters/BranchId"
+			},
+			{
+			  "$ref": "#/components/parameters/Authorization"
+			}
+		  ],
+		  "requestBody": {
+			"content": {
+			  "application/json": {
+				"schema": {
+				  "$ref": "#/components/schemas/BranchInfo"
+				}
+			  }
+			},
+			"description": "Filial para ser incluida"
+		  },
+		  "responses": {
+			"200": {
+			  "description": "Operação realizada com sucesso",
+			  "content": {
+				"application/json": {
+				  "schema": {
+					"$ref": "#/components/schemas/PagedBranches"
+				  }
+				}
+			  }
+			},
+			"400": {
+			  "description": "erro no momento da Inclusão",
+			  "content": {
+				"application/json": {
+				  "schema": {
+					"$ref": "#/components/schemas/ErrorModel"
+				  }
+				}
+			  }
+			},
+			"404": {
+			  "description": "Filial não localizada na base",
+			  "content": {
+				"application/json": {
+				  "schema": {
+					"$ref": "#/components/schemas/ErrorModel"
+				  }
+				}
+			  }
+			}
+		  }
+		},
+		"delete": {
+		  "tags": [
+			"Branch"
+		  ],
+		  "deprecated": true,
+		  "summary": "Funcionalidade retirada por questão de regras",
+		  "description": "Não é permitida a deleção da Filial por API, por motivos de segurança",
+		  "operationId": "DeleteBranchID",
+		  "x-totvs": {
+			"productInformation": [
+			  {
+				"product" : "protheus",
+				"available": false,
+				"note": "Este verbo não esta disponivel pois não é permitida a exclusão de filial por endpoit"
+			  }
+			]
+		  },
+		  "parameters": [
+			{
+			  "$ref": "#/components/parameters/BranchId"
+			}
+		  ],
+		  "responses": {
+			"405": {
+			  "description": "Não disponivel"
+			}
+		  }
+		}
+	  }
+	},
+	"components": {
+	  "parameters": {
+		"BranchId": {
+		  "name": "BranchId",
+		  "in": "path",
+		  "required": true,
+		  "description": "Identificador Único representando a Filial",
+		  "schema": {
+			"type": "string"
+		  }
+		},
+		"Authorization": {
+		  "name": "Authorization",
+		  "in": "header",
+		  "required": false,
+		  "description": "Cabeçalho usado para autorização das requisições",
+		  "schema": {
+			"type": "string"
+		  }
+		},
+		"Order": {
+		  "name": "order",
+		  "in": "query",
+		  "description": "Ordenação da Coleção",
+		  "required": false,
+		  "schema": {
+			"type": "array",
+			"items": {
+			  "type": "string"
+			},
+			"uniqueItems": true
+		  }
+		},
+		"Page": {
+		  "name": "page",
+		  "in": "query",
+		  "description": "Paginação da Coleção",
+		  "required": false,
+		  "schema": {
+			"type": "integer",
+			"format": "int32",
+			"default": 1,
+			"minimum": 1,
+			"exclusiveMinimum": false
+		  }
+		},
+		"PageSize": {
+		  "name": "pageSize",
+		  "in": "query",
+		  "description": "Quantidade de Itens por Página",
+		  "required": false,
+		  "schema": {
+			"type": "integer",
+			"format": "int32",
+			"default": 10
+		  }
+		}
+	  },
+	  "schemas": {
+		"PagedBranches": {
+		  "type": "object",
+		  "allOf": [
+			{
+			  "$ref": "#/components/schemas/Paging"
+			},
+			{
+			  "$ref": "#/components/schemas/Branches"
+			}
+		  ]
+		},
+		"Branches": {
+		  "type": "object",
+		  "properties": {
+			"items": {
+			  "type": "array",
+			  "items": {
+				"$ref": "#/components/schemas/BranchInfo"
+			  }
+			}
+		  }
+		},
+		"BranchInfo": {
+		  "type": "object",
+		  "properties": {
+			"CompanyCode": {
+			  "type": "string",
+			  "example": "D",
+			  "description": "Código da Empresa",
+			  "x-totvs": [
+			   {
+				  "product" : "protheus",
+				  "Field": "XX8.XX8_CODIGO",
+				  "Required": false,
+				  "Type": "Char",
+				  "length": "12",
+				  "avialable": true,
+				  "canUpdate": false
+				}
+			  ]
+			},
+			"UnitOfBusiness": {
+			  "type": "string",
+			  "example": "SP",
+			  "description": "Unidade de Negócio",
+			  "x-totvs": [
+			   {
+				  "product" : "protheus",
+				  "field": "XX8.XX8_UNID",
+				  "required": false,
+				  "type": "Char",
+				  "length": "12",
+				  "avialable": true,
+				  "canUpdate": false
+				}
+			  ]
+			},
+			"ParentCode": {
+			  "type": "string",
+			  "example": "01",
+			  "description": "Coligada/Codigo Unidade Pai"
+			},
+			"Description": {
+			  "type": "string",
+			  "example": "Filial São Paulo 1",
+			  "description": "Descrição"
+			},
+			"EnterpriseGroup": {
+			  "type": "string",
+			  "example": "18",
+			  "description": "Grupo de Empresa",
+			  "x-totvs": [
+			   {
+				  "product" : "protheus",
+				  "field": "XX8.XX8_GRPEMP",
+				  "required": false,
+				  "type": "Char",
+				  "length": "12",
+				  "avialable": true,
+				  "canUpdate": false
+				}
+			  ]
+			},
+			"Code": {
+			  "type": "string",
+			  "example": "D SP 01",
+			  "description": "Filial/Codigo Unidade"
+			},
+			"Title": {
+			  "type": "string",
+			  "example": "Filial SP",
+			  "description": "Título"
+			},
+			"CGC": {
+			  "type": "string",
+			  "format": "CNPJ",
+			  "example": "35.002.568/0001-26",
+			  "description": "CGC"
+			},
+			"StateRegistration": {
+			  "type": "string",
+			  "example": "Pesquisar",
+			  "description": "Inscrição Estadual"
+			},
+			"Phone": {
+			  "type": "string",
+			  "example": "3333-5555",
+			  "description": "Telefone"
+			},
+			"Street": {
+			  "type": "string",
+			  "example": "Avenida Braz Leme, 1000",
+			  "description": "Rua"
+			},
+			"Complement": {
+			  "type": "string",
+			  "example": "bloco A",
+			  "description": "Complemento"
+			},
+			"Neighborhood": {
+			  "type": "string",
+			  "example": "Santana",
+			  "description": "Bairro"
+			},
+			"State": {
+			  "type": "string",
+			  "example": "SP",
+			  "description": "Estado"
+			},
+			"City": {
+			  "type": "string",
+			  "example": "São Paulo",
+			  "description": "City"
+			},
+			"ZipCode": {
+			  "type": "string",
+			  "example": "02511-900",
+			  "description": "CEP"
+			},
+			"CityCode": {
+			  "type": "string",
+			  "example": "Pesquisar",
+			  "description": "Código do Municipio",
+			  "x-totvs": [
+			  {
+				  "product" : "protheus",
+				  "field": "SM0.M0_CODMUN",
+				  "required": false,
+				  "type": "Char",
+				  "length": "7",
+				  "note": "Campo obrigatório para o processo fiscal/TAF.",
+				  "avialable": true,
+				  "canUpdate": true
+				}
+			  ]
+			},
+			"CNAECode": {
+			  "type": "string",
+			  "example": "Pesquisar",
+			  "description": "Código da Classificacao Nacional de Ativades Economicas",
+			  "x-totvs": [
+			  {
+				  "product" : "protheus",
+				  "field": "SM0.M0_CNAE",
+				  "required": false,
+				  "type": "Char",
+				  "length": "7",
+				  "note": "Campo obrigatório para o processo fiscal/TAF.",
+				  "avialable": true,
+				  "canUpdate": false
+				}
+			  ]
+			},
+			"NatureCode": {
+			  "type": "string",
+			  "example": "pesquisar",
+			  "description": "Unidade de Negócio",
+			  "x-totvs": [
+			   {
+				  "product" : "protheus",
+				  "field": "SM0.M0_NATJUR",
+				  "required": false,
+				  "type": "Char",
+				  "length": "4",
+				  "note": "Campo obrigatório para o processo fiscal/TAF.",
+				  "avialable": true,
+				  "canUpdate": false
+				}
+			  ]
+			},
+			"BillingAddress": {
+			  "type": "string",
+			  "example": "Avenida Braz Leme, 1000",
+			  "description": "Unidade de Negócio",
+			  "x-totvs": [
+			   {
+				  "product" : "protheus",
+				  "field": "SM0.M0_ENDCOB",
+				  "required": false,
+				  "type": "Char",
+				  "length": "60",
+				  "note": "Campo obrigatório para o processo fiscal/TAF.",
+				  "avialable": true,
+				  "canUpdate": true
+				}
+			  ]
+			},
+			"BillingZipCode": {
+			  "type": "string",
+			  "example": "02511-900",
+			  "description": "Unidade de Negócio",
+			  "x-totvs": [
+			   {
+				  "product" : "protheus",
+				  "field": "SM0.M0_CEPCOB",
+				  "required": false,
+				  "type": "Char",
+				  "length": "8",
+				  "note": "Campo obrigatório para o processo fiscal/TAF.",
+				  "avialable": true,
+				  "canUpdate": true
+				}
+			  ]
+			},
+			"BillingComplement": {
+			  "type": "string",
+			  "example": "Bloca A",
+			  "description": "Unidade de Negócio",
+			  "x-totvs": [
+			  {
+				  "product" : "protheus",
+				  "field": "SM0.M0_COMPCOB",
+				  "required": false,
+				  "type": "Char",
+				  "length": "25",
+				  "note": "Campo obrigatório para o processo fiscal/TAF.",
+				  "avialable": true,
+				  "canUpdate": true
+				}
+			  ]
+			},
+			"BillingNeighborhood": {
+			  "type": "string",
+			  "example": "Santana",
+			  "description": "Unidade de Negócio",
+			  "x-totvs": [
+			  {
+				  "product" : "protheus",
+				  "field": "SM0.M0_BAIRCOB",
+				  "required": false,
+				  "type": "Char",
+				  "length": "35",
+				  "note": "Campo obrigatório para o processo fiscal/TAF.",
+				  "avialable": true,
+				  "canUpdate": true
+				}
+			  ]
+			},
+			"BillingCity": {
+			  "type": "string",
+			  "example": "São Paulo",
+			  "description": "Unidade de Negócio",
+			  "x-totvs": [
+			   {
+				  "product" : "protheus",
+				  "field": "SM0.M0_CIDCOB",
+				  "required": false,
+				  "type": "Char",
+				  "length": "60",
+				  "note": "Campo obrigatório para o processo fiscal/TAF.",
+				  "avialable": true,
+				  "canUpdate": true
+				}
+			  ]
+			},
+			"BillingState": {
+			  "type": "string",
+			  "example": "SP",
+			  "description": "Unidade de Negócio",
+			  "x-totvs": [
+			  {
+				  "product" : "protheus",
+				  "field": "SM0.M0_ESTCOB",
+				  "required": false,
+				  "type": "Char",
+				  "length": "2",
+				  "note": "Campo obrigatório para o processo fiscal/TAF.",
+				  "avialable": true,
+				  "canUpdate": true
+				}
+			  ]
+			},
+			"NIRE": {
+			  "type": "string",
+			  "example": "pesquisar",
+			  "description": "Unidade de Negócio",
+			  "x-totvs": [
+			   {
+				  "product" : "protheus",
+				  "field": "SM0.M0_NIRE",
+				  "required": false,
+				  "type": "Char",
+				  "length": "25",
+				  "note": "Campo obrigatório para o processo fiscal/TAF.",
+				  "avialable": true,
+				  "canUpdate": false
+				}
+			  ]
+			},
+			"DTRE": {
+			  "type": "string",
+			  "example": "pesquisar",
+			  "description": "Unidade de Negócio",
+			  "x-totvs": [
+			  {
+				  "product" : "protheus",
+				  "field": "SM0.M0_DTRE",
+				  "required": false,
+				  "type": "Char",
+				  "length": "10",
+				  "note": "Campo obrigatório para o processo fiscal/TAF.",
+				  "avialable": true,
+				  "canUpdate": false
+				}
+			  ]
+			},
+			"Suframa": {
+			  "type": "string",
+			  "example": "pesquisar",
+			  "description": "Unidade de Negócio",
+			  "x-totvs": [
+			  {
+				  "product" : "protheus",
+				  "field": "SM0.M0_INS_SUF",
+				  "required": false,
+				  "type": "Char",
+				  "length": "12",
+				  "note": "Campo obrigatório para o processo fiscal/TAF.",
+				  "avialable": true,
+				  "canUpdate": false
+			  }
+			  ]
+			},
+			"SubscriptionType": {
+			  "type": "string",
+			  "example": "pesquisar",
+			  "description": "Unidade de Negócio",
+			  "enum": [
+				"1",
+				"2",
+				"3",
+				"4"
+			  ],
+			  "x-totvs": [
+				{
+				  "product" : "protheus",
+				  "field": "SM0.M0_TPINSC",
+				  "required": false,
+				  "type": "Char",
+				  "length": "1",
+				  "avialable": true,
+				  "canUpdate": false,
+				  "note": "1=CEI;2=CNPJ;3=CPF;4=INCRA"
+				}
+			  ]
+			}
+		  }
+		},
+		"Paging": {
+		  "type": "object",
+		  "properties": {
+			"hasNext": {
+			  "type": "boolean",
+			  "example": false
+			}
+		  }
+		},
+		"ErrorModel": {
+		  "type": "object",
+		  "required": [
+			"code",
+			"message",
+			"detailedMessage"
+		  ],
+		  "properties": {
+			"code": {
+			  "type": "string",
+			  "description": "Código identificador do erro."
+			},
+			"message": {
+			  "type": "string",
+			  "description": "Literal no idioma da requisição descrevendo o erro para o cliente."
+			},
+			"detailedMessage": {
+			  "type": "string",
+			  "description": "Mensagem técnica e mais detalhada do erro."
+			},
+			"help": {
+			  "type": "string",
+			  "format": "uri",
+			  "description": "URI para a documentação do erro."
+			}
+		  }
+		}
+	  }
+	}
+  }
 
 const PET_STORE_20 =
 {
