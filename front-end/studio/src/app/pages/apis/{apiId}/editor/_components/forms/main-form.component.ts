@@ -23,6 +23,7 @@ import {CommandService} from "../../_services/command.service";
 import {DocumentService} from "../../_services/document.service";
 import {createReplaceDocumentCommand, ICommand} from "oai-ts-commands";
 import {EditorsService} from "../../_services/editors.service";
+import {Oas30TotvsDocument} from "../../../../../../app-totvs-core/models/OasTotvs30Document.model"
 
 
 @Component({
@@ -32,18 +33,18 @@ import {EditorsService} from "../../_services/editors.service";
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MainFormComponent extends SourceFormComponent<OasDocument> {
+export class MainFormComponent extends SourceFormComponent<Oas30TotvsDocument> {
 
     library: OasLibraryUtils = new OasLibraryUtils();
 
-    _document: OasDocument;
+    _document: Oas30TotvsDocument;
     @Input()
-    set document(doc: OasDocument) {
+    set document(doc: Oas30TotvsDocument) {
         this._document = doc;
         this.sourceNode = doc;
         this.revertSource();
     }
-    get document(): OasDocument {
+    get document(): Oas30TotvsDocument {
         return this._document;
     }
 
@@ -62,8 +63,9 @@ export class MainFormComponent extends SourceFormComponent<OasDocument> {
         return this.document.is3xDocument();
     }
 
-    protected createEmptyNodeForSource(): OasDocument {
-        return this.library.createDocument(this.document.getSpecVersion());
+    protected createEmptyNodeForSource(): Oas30TotvsDocument {
+        // return this.library.createDocument(this.document.getSpecVersion());
+        return this._document;
     }
 
     protected createReplaceNodeCommand(node: OasDocument): ICommand {

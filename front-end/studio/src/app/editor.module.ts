@@ -112,6 +112,7 @@ import {CollaboratorAggregateComponent} from "./pages/apis/{apiId}/editor/_compo
 import {CollaboratorService} from "./pages/apis/{apiId}/editor/_services/collaborator.service";
 import {CollaboratorOverlayComponent} from "./pages/apis/{apiId}/editor/_components/common/collaborator-overlay.component";
 import {RenameEntityDialogComponent} from "./pages/apis/{apiId}/editor/_components/dialogs/rename-entity.component";
+import { XTotvsSectionComponent } from "./pages/apis/{apiId}/editor/_components/forms/main/xtotvs/xtotvs-section.component";
 
 @NgModule({
     imports: [
@@ -137,7 +138,7 @@ import {RenameEntityDialogComponent} from "./pages/apis/{apiId}/editor/_componen
         DefinitionInfoSectionComponent, RenamePathDialogComponent, CounterComponent, ResponsesSectionComponent,
         InlineExampleEditorComponent, DefinitionExampleSectionComponent, PropertyEditorComponent, HeaderParamRowComponent,
         HeaderParamsSectionComponent, OperationsSectionComponent, MediaTypeRowComponent, CollaboratorAggregateComponent,
-        CollaboratorOverlayComponent
+        CollaboratorOverlayComponent, XTotvsSectionComponent
     ],
     providers: [
         ProblemsService, SelectionService, LicenseService, CommandService, DocumentService, EditorsService,

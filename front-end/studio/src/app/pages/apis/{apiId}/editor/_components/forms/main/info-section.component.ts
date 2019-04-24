@@ -27,6 +27,7 @@ import {CommandService} from "../../../_services/command.service";
 import {AbstractBaseComponent} from "../../common/base-component";
 import {DocumentService} from "../../../_services/document.service";
 import {SelectionService} from "../../../_services/selection.service";
+import { OasTotvsInfo } from "../../../../../../../app-totvs-core/models/OasTotvsInfo.model";
 
 
 @Component({
@@ -45,7 +46,7 @@ export class InfoSectionComponent extends AbstractBaseComponent {
         super(changeDetectorRef, documentService, selectionService);
     }
 
-    public info(): OasInfo {
+    public info(): OasTotvsInfo {
         return this.document.info;
     }
 
