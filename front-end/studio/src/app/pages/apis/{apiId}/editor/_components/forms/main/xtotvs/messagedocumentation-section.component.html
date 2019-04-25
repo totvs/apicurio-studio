@@ -1,13 +1,11 @@
-<!-- <section type="info" label="MessageDocumentation"
-         contextHelp="This section allows you to modify x-totvs message documentation of an API."
-         [collaborationNodePath]="[ '/info/version', '/info/name' ]"
-         [validationModels]="[xtotvs()]" [validationProperties]="['version', 'name']" [validationShallow]="true">
+<section type="info" label="MessageDocumentation"
+         contextHelp="This section allows you to modify x-totvs message documentation of an API.">
     <span actions></span>
-    <div body> -->
+    <div body> 
         <!-- TODO: Vincular corretamente com o model-->
         <!-- Name -->
-        <!-- <div class="section-field-label">
-            <validation-problem [model]="xtotvs()" property="name" [shallow]="true"></validation-problem>
+        <div class="section-field-label">
+            <!-- <validation-problem [model]="xtotvs()" property="name" [shallow]="true"></validation-problem> -->
             <span>Name</span>
         </div>
         <div class="section-field name">
@@ -17,7 +15,34 @@
                                     [inputClass]="'api-item-editor api-name-editor api-name api-item-name'"
                                     [baseNode]="xtotvs()" nodePath="name"
                                     [noValueMessage]="'No name.'" (onChange)="onNameChange($event)"></inline-markdown-editor>
-        </div> --> 
-        
-    <!-- </div>
-</section> -->
+        </div> 
+
+        <!-- Name -->
+        <div class="section-field-label">
+            <!-- <validation-problem [model]="xtotvs()" property="name" [shallow]="true"></validation-problem> -->
+            <span>Description</span>
+        </div>
+        <div class="section-field description">
+            <inline-markdown-editor [value]="description()"
+                                    [labelClass]="'api-description api-item-description'"
+                                    [formClass]="'api-description-editor-form'"
+                                    [inputClass]="'api-item-editor api-description-editor api-description api-item-description'"
+                                    [baseNode]="xtotvs()" nodePath="description"
+                                    [noValueMessage]="'No name.'" (onChange)="onNameChange($event)"></inline-markdown-editor>
+        </div> 
+
+        <!-- Name -->
+        <div class="section-field-label">
+            <!-- <validation-problem [model]="xtotvs()" property="name" [shallow]="true"></validation-problem> -->
+            <span>Segment</span>
+        </div>
+        <div class="section-field segment">
+            <inline-markdown-editor [value]="segment()"
+                                    [labelClass]="'api-segment api-item-segment'"
+                                    [formClass]="'api-segment-editor-form'"
+                                    [inputClass]="'api-segment-editor api-name-editor api-name api-item-segment'"
+                                    [baseNode]="xtotvs()" nodePath="segment"
+                                    [noValueMessage]="'No name.'" (onChange)="onNameChange($event)"></inline-markdown-editor>
+        </div>         
+    </div>
+</section>

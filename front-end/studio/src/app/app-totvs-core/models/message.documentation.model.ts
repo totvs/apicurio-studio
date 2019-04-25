@@ -1,4 +1,4 @@
-export class OasTotvsMessageDocumentation {
+export declare abstract class OasTotvsMessageDocumentation {
     name: string;
     description: string;
     segment: string;
